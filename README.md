@@ -1,3 +1,3 @@
 # Showcase
 
-This project is my personnal website : gcousin.site
+This project is my personnal website : https://gcousin.site
