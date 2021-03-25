@@ -1,0 +1,29 @@
+version: '3.8'
+
+networks:
+  dev:
+
+services:
+  nginx:
+    image: nginx:1.19.6-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/gcousin.site
+      - ./docker/nginx/gcousin.site:/etc/nginx/conf.d/gcousin.site
+      - ./docker/nginx/log:/var/log/nginx/
+    networks:
+      - dev
+
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www/gcousin.site
+    depends_on:
+      - nginx
+    networks:
+      - dev
+    command: npm run build
