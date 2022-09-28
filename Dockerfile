@@ -1,7 +1,8 @@
 FROM node:10 AS builder
 
-WORKDIR /var/www/gcousin.site
+WORKDIR /app/Showcase
 
 COPY package.json ./
-
+COPY . .
 RUN npm install
+RUN npm build
